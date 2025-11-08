@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Send SMS | Premium UI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    .glass {
+      backdrop-filter: blur(20px);
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .contact-card {
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .contact-card:hover {
+      background-color: rgba(255,255,255,0.1);
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-[#1c1b29] via-[#191621] to-[#000000] min-h-screen flex items-center justify-center text-white">
+
+  <div class="max-w-md w-full glass rounded-3xl shadow-2xl p-10">
+    <div class="flex items-center mb-6">
+      <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2709.png" class="w-8 h-8 mr-2" />
+      <h1 class="text-2xl font-bold tracking-wide">Send SMS</h1>
+    </div>
+    <p class="text-gray-400 mb-6 text-sm">Send a message instantly using Twilio</p>
+
+    <!-- ✅ Contact List Section -->
+    <h2 class="text-lg font-semibold mb-3">Contacts</h2>
+    <div id="contacts" class="grid grid-cols-0 gap-3 mb-6">
+      <div class="contact-card glass p-3 rounded-xl text-center" data-phone="+918128356462">
+        <p class="font-semibold">Dixit</p>
+        <p class="text-sm text-gray-400">+91 81283 56462</p>
+      </div>
+
+    </div>
+
+    <!-- ✅ SMS Form -->
+    <form id="smsForm">
+      <label class="block mb-2 text-sm text-gray-300">Phone Number</label>
+      <input
+        type="text"
+        placeholder="+91XXXXXXXXXX"
+        name="phone"
+        id="phoneInput"
+        class="w-full p-3 rounded-xl bg-[#1e1e2e] border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-purple-600 mb-4"
+        required />
+
+      <label class="block mb-2 text-sm text-gray-300">Your Message</label>
+      <textarea
+        name="message"
+        rows="4"
+        placeholder="Type your message..."
+        class="w-full p-3 rounded-xl bg-[#1e1e2e] border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-purple-600 mb-6"
+        required></textarea>
+
+      <button
+        type="submit"
+        class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 transition-all py-3 rounded-xl text-white font-semibold shadow-lg hover:shadow-2xl">
+        Send Message
+      </button>
+    </form>
+
+    <p id="status" class="mt-4 text-center text-sm font-semibold"></p>
+  </div>
+
+  <script src="script.js"></script>
+
+  <script>
+    // ✅ Auto-fill number when clicking a contact
+    document.querySelectorAll('.contact-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const phone = card.getAttribute('data-phone');
+        document.getElementById('phoneInput').value = phone;
+      });
+    });
+  </script>
+</body>
+</html>
